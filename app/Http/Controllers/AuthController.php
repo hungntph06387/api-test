@@ -31,11 +31,11 @@ class AuthController extends Controller
     {
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
-            $user = new User();
-            $user->name = $data->name;
-            $user->email = $data->email;
+            $user              = new User();
+            $user->name        = $data->name;
+            $user->email       = $data->email;
             $user->provider_id = $data->id;
-            $user->avatar = $data->avatar;
+            $user->avatar      = $data->avatar;
             $user->save();
         }
         Auth::login($user);

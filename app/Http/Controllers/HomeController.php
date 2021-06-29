@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Convert;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
@@ -18,13 +19,17 @@ class HomeController extends Controller
 
     public function res(Request $request)
     {
-        $str = $request->input('str');
-        $to = $request->input('to');
-        $mode = $request->input('mode');
+        $str          = $request->input('str');
+        $to           = $request->input('to');
+        $mode         = $request->input('mode');
         $romajiSystem = $request->input('romajiSystem');
-        $user_id = $request->input('user_id');
+        $user_id      = $request->input('user_id');
 
-        $checkStr = Convert::where('str', '=', $str)->first();
+        $checkStr = DB::table('converts')
+            ->where('str','=', $str)
+            ->where('to','=',$to)
+            ->where('mode','=',$mode)
+            ->first();
 
         if($checkStr){
             $result = $checkStr->cv;
@@ -36,9 +41,9 @@ class HomeController extends Controller
             $client = new \GuzzleHttp\Client();
             $response = $client->post($url, [
                 \GuzzleHttp\RequestOptions::JSON => [
-                    'str' => $str,
-                    'to' => $to,
-                    'mode' => $mode,
+                    'str'          => $str,
+                    'to'           => $to,
+                    'mode'         => $mode,
                     'romajiSystem' => $romajiSystem
                 ],
             ]);
