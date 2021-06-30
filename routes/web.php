@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/convert', [\App\Http\Controllers\HomeController::class, 'res'])
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('/home');
+Route::post('/convert', [\App\Http\Controllers\HomeController::class, 'convert'])->name('convert')
     ->middleware('throttle:clickConvertLimited');
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 

@@ -24,7 +24,7 @@ class AuthController extends Controller
         $user = Socialite::driver('facebook')->user();
         session()->push('loggedUser', $user);
         $this->_registerOrLoginUser($user);
-        return redirect('/home');
+        return redirect('/');
     }
 
     protected function _registerOrLoginUser($data)
@@ -45,7 +45,7 @@ class AuthController extends Controller
     {
         session()->pull('loggedUser');
         Auth::logout();
-        return redirect('/home');
+        return redirect('/');
     }
 }
 
