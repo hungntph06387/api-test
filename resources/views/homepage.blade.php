@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container">
-    <!--START NAVBAR -->
+
     <div class="my-header">
         <div class="mycontainer">
             <!--START NAVBAR -->
@@ -31,14 +31,12 @@
                 </nav>
 
                 @if(Session::get('loggedUser'))
-                <a href="#">{{Auth::user()->name}}</a> / <a href="/logout">Logout</a>
+                    <a href="#">{{Auth::user()->name}}</a> / <a href="/logout">Logout</a>
                     {{--<img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="64" width="64">--}}
                 @endif
             </div>
         </div>
     </div>
-
-
 
     <div class="formControll">
         <form id="submitForm">
@@ -49,6 +47,7 @@
                     <input name="user_id" id="user_id" type="hidden" value="{{ Auth::user()->id }}">
                 @endif
             </div>
+            <input type="hidden" id="id" name="id">
             <div class="form-group">
                 <label for="exampleFormControlTextarea4">Original Text</label>
                 <div>
@@ -90,7 +89,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Convert</button>
                 @if(Session::get('loggedUser'))
-                <a id="history" class="btn btn-primary" role="button" href="/user/{{ Auth::user()->id }}">Converts History</a>
+                <a id="history" class="btn btn-primary" role="button" at="{{ Auth::user()->id }}" href="/user/{{ Auth::user()->id }}">Converts History</a>
                 @endif
                 <br>
                 <div class="form-group">
@@ -112,8 +111,6 @@
                     <h3>Dowload Our App</h3>
                     <p>Download App for Android and Ios mobile phone.</p>
                     <div class="app-logo">
-                        <img src="/images/play.png" width="120px" height="50px" alt="">
-                        <img src="/images/app.png" width="120px" height="50px" alt="">
                     </div>
                 </div>
 
@@ -140,6 +137,7 @@
             <p class="coppyright">Copyright 2021 | Translate</p>
         </div>
     </div>
+
 </div>
 
 
@@ -178,6 +176,22 @@
                 }
             });
         });
+
+        {{--$("#history").click(function (e){--}}
+        {{--    e.preventDefault();--}}
+        {{--    let history = $("#history").attr('at');--}}
+
+        {{--    $.ajax({--}}
+        {{--        url: "{{route('history')}}",--}}
+        {{--        type: "GET",--}}
+        {{--        data: {--}}
+        {{--            history:history--}}
+        {{--        },--}}
+        {{--        success:function (response) {--}}
+        {{--            // console.log(response);--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--})--}}
     </script>
 
 </body>

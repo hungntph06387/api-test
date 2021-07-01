@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function converts()
     {
-        return $this->hasMany(Convert::class);
+        return $this->belongsToMany(Convert::class, 'convert_users', 'user_id', 'convert_id');
     }
 
     /**

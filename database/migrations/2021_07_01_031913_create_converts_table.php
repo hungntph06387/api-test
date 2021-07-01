@@ -20,8 +20,6 @@ class CreateConvertsTable extends Migration
             $table->string('mode');
             $table->string('romajiSystem');
             $table->string('cv');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -24,8 +24,14 @@ Route::get('/login/facebook', [App\Http\Controllers\AuthController::class, 'redi
 Route::get('/login/facebook/callback', [App\Http\Controllers\AuthController::class, 'handleFacebookCallback']);
 Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
-Route::get('/user/{id}', [\App\Http\Controllers\HomeController::class, 'historyConvert']);
+Route::get('/user/{id}', [\App\Http\Controllers\HomeController::class, 'historyConvert'])->name('history');
 Route::get('/delete/{id}', [\App\Http\Controllers\HomeController::class, 'deleteHistory']);
+
+
+
+
+
+
 
 
 

@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Convert extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = "converts";
 
     protected $fillable = [
         'str',
@@ -17,14 +18,10 @@ class Convert extends Model
         'mode',
         'romajiSystem',
         'cv',
-        'user_id',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'convert_users');
     }
-
-
-
 }
